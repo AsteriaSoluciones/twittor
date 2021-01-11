@@ -20,6 +20,7 @@ func Manejadores() {
 	router.HandleFunc("/login", middlewares.ChequeoBD(routers.Login)).Methods("POST")
 	router.HandleFunc("/verperfil", middlewares.ChequeoBD(middlewares.ValidoJWT(routers.VerPerfil))).Methods("GET")
 	router.HandleFunc("/modificarperfil", middlewares.ChequeoBD(middlewares.ValidoJWT(routers.ModificarPerfil))).Methods("PUT")
+	router.HandleFunc("/tweet", middlewares.ChequeoBD(middlewares.ValidoJWT(routers.GraboTweet))).Methods("POST")
 
 	//Buscar el puerto en variables de entorno, si no se encuentra establecerlo
 	PORT := os.Getenv("PORT")
