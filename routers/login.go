@@ -17,6 +17,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	var t models.Usuario
 
 	err := json.NewDecoder(r.Body).Decode(&t)
+	defer r.Body.Close()
 	if err != nil {
 		http.Error(w, "Usuario y/o contraseña no válidos: "+err.Error(), http.StatusBadRequest)
 		return

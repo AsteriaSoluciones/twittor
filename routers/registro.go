@@ -13,6 +13,7 @@ func Registro(w http.ResponseWriter, r *http.Request) {
 	var t models.Usuario
 	//Tomar los datos del cuerpo de la petición y convertirlas en un objeto Usuario
 	err := json.NewDecoder(r.Body).Decode(&t)
+	defer r.Body.Close()
 	if err != nil {
 		http.Error(w, "Error en los datos recibidos: "+err.Error(), 400)
 		return
